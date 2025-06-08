@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using GeoWorldHotelSearch.Models;
 using GeoWorldHotelSearch.Services;
+using System.IO;
 
 namespace GeoWorldHotelSearch.Controllers;
 
@@ -21,10 +22,12 @@ public class HomeController : Controller
         _dashboardService = dashboardService;
     }
 
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
-        var featuredHotels = await _hotelService.GetAllHotelsAsync(1, 6);
-        return View(featuredHotels);
+        // Serve the static HTML documentation as the home page
+        var docPath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Home", "ProjectDocumentation.html");
+        var html = System.IO.File.ReadAllText(docPath);
+        return Content(html, "text/html");
     }
 
     public IActionResult Privacy()
