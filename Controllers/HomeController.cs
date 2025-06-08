@@ -24,10 +24,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        // Serve the static HTML documentation as the home page
-        var docPath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Home", "ProjectDocumentation.html");
-        var html = System.IO.File.ReadAllText(docPath);
-        return Content(html, "text/html");
+        // Show the default home page (no featured hotels logic)
+        return View();
     }
 
     public IActionResult Privacy()
@@ -43,6 +41,9 @@ public class HomeController : Controller
     
     public IActionResult Documentation()
     {
-        return View();
+        // Serve the static HTML documentation as the documentation page
+        var docPath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Home", "ProjectDocumentation.html");
+        var html = System.IO.File.ReadAllText(docPath);
+        return Content(html, "text/html");
     }
 }
