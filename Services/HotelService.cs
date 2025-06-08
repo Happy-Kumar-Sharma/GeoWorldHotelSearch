@@ -111,4 +111,10 @@ public class HotelService : IHotelService
 
         _logger.LogInformation("Completed seeding {Count} hotels", count);
     }
+
+    public async Task<IEnumerable<Hotel>> GetFeaturedHotelsAsync(int maxCount = 6)
+    {
+        // Fetch up to maxCount featured hotels, ordered by UpdatedAt descending
+        return await _hotelRepository.GetFeaturedAsync(maxCount);
+    }
 }

@@ -22,10 +22,11 @@ public class HomeController : Controller
         _dashboardService = dashboardService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        // Show the default home page (no featured hotels logic)
-        return View();
+        // Show only featured hotels on the home page
+        var featuredHotels = await _hotelService.GetFeaturedHotelsAsync(6);
+        return View(featuredHotels);
     }
 
     public IActionResult Privacy()

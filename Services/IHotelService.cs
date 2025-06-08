@@ -12,4 +12,5 @@ public interface IHotelService
     Task DeleteHotelAsync(int id);
     Task<(IEnumerable<Hotel> Hotels, long Total)> SearchHotelsAsync(string query, int page = 1, int pageSize = 10);
     Task SeedHotelsAsync(int count = 1000);
+    Task<IEnumerable<Hotel>> GetFeaturedHotelsAsync(int maxCount = 6);
 }

@@ -66,4 +66,13 @@ public class HotelRepository : IHotelRepository
     {
         return await _context.Hotels.AnyAsync(h => h.Id == id);
     }
+
+    public async Task<IEnumerable<Hotel>> GetFeaturedAsync(int maxCount = 6)
+    {
+        return await _context.Hotels
+            .Where(h => h.IsFeatured)
+            .OrderByDescending(h => h.UpdatedAt)
+            .Take(maxCount)
+            .ToListAsync();
+    }
 }
