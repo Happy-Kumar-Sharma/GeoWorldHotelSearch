@@ -1,6 +1,7 @@
 using Bogus;
 using GeoWorldHotelSearch.Models;
 using GeoWorldHotelSearch.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace GeoWorldHotelSearch.Services;
 
@@ -54,9 +55,55 @@ public class HotelService : IHotelService
         await _elasticsearchService.DeleteHotelFromIndexAsync(id);
     }
 
+    public async Task<(IEnumerable<Hotel> Hotels, long Total)> SearchHotelsAsync(string? query, int page = 1, int pageSize = 10, decimal? minPrice = null, decimal? maxPrice = null, List<int>? stars = null, List<string>? amenities = null, string sortOrder = "relevance")
+    {
+        var hotelsQuery = _hotelRepository.Query();
+
+        if (!string.IsNullOrWhiteSpace(query))
+        {
+            hotelsQuery = hotelsQuery.Where(h => h.Name.Contains(query) || h.Description.Contains(query) || h.City.Contains(query) || h.Country.Contains(query));
+        }
+        if (minPrice.HasValue)
+            hotelsQuery = hotelsQuery.Where(h => h.PricePerNight >= minPrice.Value);
+        if (maxPrice.HasValue)
+            hotelsQuery = hotelsQuery.Where(h => h.PricePerNight <= maxPrice.Value);
+        if (stars != null && stars.Any())
+            hotelsQuery = hotelsQuery.Where(h => stars.Contains(h.Stars));
+        if (amenities != null && amenities.Any())
+        {
+            // Workaround for EF Core not supporting List<string>.Contains in LINQ-to-SQL
+            var hotelsList = await hotelsQuery.ToListAsync();
+            var filteredHotels = hotelsList.Where(h => amenities.All(a => h.Amenities.Contains(a))).ToList();
+            var filteredTotal = filteredHotels.Count;
+            var pagedHotels = filteredHotels.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            return (pagedHotels, filteredTotal);
+        }
+
+        switch (sortOrder)
+        {
+            case "price_asc":
+                hotelsQuery = hotelsQuery.OrderBy(h => h.PricePerNight);
+                break;
+            case "price_desc":
+                hotelsQuery = hotelsQuery.OrderByDescending(h => h.PricePerNight);
+                break;
+            case "rating_desc":
+                hotelsQuery = hotelsQuery.OrderByDescending(h => h.Rating);
+                break;
+            default:
+                hotelsQuery = hotelsQuery.OrderBy(h => h.Id);
+                break;
+        }
+
+        var total = await hotelsQuery.CountAsync();
+        var hotels = await hotelsQuery.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+        return (hotels, total);
+    }
+
     public async Task<(IEnumerable<Hotel> Hotels, long Total)> SearchHotelsAsync(string query, int page = 1, int pageSize = 10)
     {
-        return await _elasticsearchService.SearchAsync(query, page, pageSize);
+        // Fallback for interface compatibility, call the new method with only query and paging
+        return await SearchHotelsAsync(query, page, pageSize, null, null, null, null, "relevance");
     }
 
     public async Task SeedHotelsAsync(int count = 1000)
