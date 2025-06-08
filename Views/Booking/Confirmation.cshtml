@@ -1,0 +1,18 @@
+@model GeoWorldHotelSearch.Models.Booking
+@{
+    ViewData["Title"] = "Booking Confirmation";
+}
+<div class="container mt-4">
+    <div class="alert alert-success">
+        <h2>Booking Confirmed!</h2>
+        <p>Your booking for <strong>@Model.HotelName</strong> is confirmed.</p>
+        <ul>
+            <li><strong>Check-in:</strong> @Model.CheckIn.ToString("yyyy-MM-dd")</li>
+            <li><strong>Check-out:</strong> @Model.CheckOut.ToString("yyyy-MM-dd")</li>
+            <li><strong>Guests:</strong> @Model.Guests</li>
+            <li><strong>Total Price:</strong> $@Model.TotalPrice.ToString("0.00")</li>
+        </ul>
+        <a asp-controller="Hotels" asp-action="Details" asp-route-id="@Model.HotelId" class="btn btn-primary">Back to Hotel</a>
+        <a asp-controller="Hotels" asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+    </div>
+</div>

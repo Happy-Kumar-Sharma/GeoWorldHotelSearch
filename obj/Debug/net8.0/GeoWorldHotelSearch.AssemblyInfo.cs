@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GeoWorldHotelSearch")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fd049714a3e1c5d70b1ebf3aea6cb5181d93dbd")]
 [assembly: System.Reflection.AssemblyProductAttribute("GeoWorldHotelSearch")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GeoWorldHotelSearch")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

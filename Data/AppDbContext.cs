@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Hotel> Hotels { get; set; }
     public DbSet<SearchQuery> SearchQueries { get; set; }
+    public DbSet<Booking> Bookings { get; set; } // Added Bookings DbSet
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -42,6 +43,20 @@ public class AppDbContext : DbContext
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Query).IsRequired();
             entity.Property(e => e.UserIp).IsRequired();
+        });
+
+        // Configure Booking entity
+        modelBuilder.Entity<Booking>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.HotelId).IsRequired();
+            entity.Property(e => e.HotelName).IsRequired();
+            entity.Property(e => e.CheckIn).IsRequired();
+            entity.Property(e => e.CheckOut).IsRequired();
+            entity.Property(e => e.Guests).IsRequired();
+            entity.Property(e => e.TotalPrice).HasColumnType("decimal(18,2)");
+            entity.Property(e => e.CreatedAt).IsRequired();
+            // Remove UserId, BookingDate, Status as they do not exist in Booking model
         });
     }
 }

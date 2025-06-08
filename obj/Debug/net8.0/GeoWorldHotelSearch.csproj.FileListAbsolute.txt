@@ -110,3 +110,4 @@
 /home/happy/learning/GeoWorldHotelSearch/obj/Debug/net8.0/GeoWorldHotelSearch.pdb
 /home/happy/learning/GeoWorldHotelSearch/obj/Debug/net8.0/GeoWorldHotelSearch.genruntimeconfig.cache
 /home/happy/learning/GeoWorldHotelSearch/obj/Debug/net8.0/ref/GeoWorldHotelSearch.dll
+/home/happy/learning/GeoWorldHotelSearch/obj/Debug/net8.0/GeoWorldHotelSearch.sourcelink.json

@@ -1,6 +1,9 @@
-@model GeoWorldHotelSearch.Models.Hotel
+@model (GeoWorldHotelSearch.Models.Hotel, GeoWorldHotelSearch.Models.Booking?)
 @{
-    ViewData["Title"] = Model.Name;
+    ViewData["Title"] = Model.Item1.Name;
+    var today = DateTime.UtcNow.ToString("yyyy-MM-dd");
+    var tomorrow = DateTime.UtcNow.AddDays(1).ToString("yyyy-MM-dd");
+    var latestBooking = Model.Item2;
 }
 
 <div class="container mt-4">
@@ -8,31 +11,31 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
             <li class="breadcrumb-item"><a asp-controller="Hotels" asp-action="Index">Hotels</a></li>
-            <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Item1.Name</li>
         </ol>
     </nav>
     
     <div class="row mb-4">
         <div class="col-md-8">
-            <h1 class="mb-3">@Model.Name</h1>
+            <h1 class="mb-3">@Model.Item1.Name</h1>
             <p class="text-muted">
-                <i class="bi bi-geo-alt"></i> @Model.Location, @Model.City, @Model.Country
+                <i class="bi bi-geo-alt"></i> @Model.Item1.Location, @Model.Item1.City, @Model.Item1.Country
             </p>
             
             <div class="mb-3">
-                @for (int i = 0; i < Model.Stars; i++)
+                @for (int i = 0; i < Model.Item1.Stars; i++)
                 {
                     <i class="bi bi-star-fill text-warning"></i>
                 }
-                <span class="ms-2 badge bg-primary">@Model.Rating.ToString("0.0")/5 Guest Rating</span>
+                <span class="ms-2 badge bg-primary">@Model.Item1.Rating.ToString("0.0")/5 Guest Rating</span>
             </div>
         </div>
         <div class="col-md-4 text-md-end">
             <div class="d-flex justify-content-md-end gap-2">
-                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">
+                <a asp-action="Edit" asp-route-id="@Model.Item1.Id" class="btn btn-outline-primary">
                     <i class="bi bi-pencil"></i> Edit
                 </a>
-                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">
+                <a asp-action="Delete" asp-route-id="@Model.Item1.Id" class="btn btn-outline-danger">
                     <i class="bi bi-trash"></i> Delete
                 </a>
             </div>
@@ -42,11 +45,11 @@
     <div class="row mb-4">
         <div class="col-md-8">
             <div class="card shadow-sm mb-4">
-                <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? "/images/hotel-placeholder.jpg" : Model.ImageUrl)" 
-                     class="card-img-top" alt="@Model.Name" style="height: 400px; object-fit: cover;">
+                <img src="@(string.IsNullOrEmpty(Model.Item1.ImageUrl) ? "/images/hotel-placeholder.jpg" : Model.Item1.ImageUrl)" 
+                     class="card-img-top" alt="@Model.Item1.Name" style="height: 400px; object-fit: cover;">
                 <div class="card-body">
                     <h4 class="card-title">About this hotel</h4>
-                    <p class="card-text">@Model.Description</p>
+                    <p class="card-text">@Model.Item1.Description</p>
                 </div>
             </div>
             
@@ -54,7 +57,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Amenities</h4>
                     <div class="row">
-                        @foreach (var amenity in Model.Amenities)
+                        @foreach (var amenity in Model.Item1.Amenities)
                         {
                             <div class="col-md-4 mb-2">
                                 <div class="d-flex align-items-center">
@@ -81,47 +84,65 @@
                     <h4 class="card-title">Price Details</h4>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <span>Price per night</span>
-                        <span class="fs-3 fw-bold text-primary">$@Model.PricePerNight.ToString("0.00")</span>
+                        <span class="fs-3 fw-bold text-primary">$@Model.Item1.PricePerNight.ToString("0.00")</span>
                     </div>
-                    
                     <hr>
-                    
+                    @if (latestBooking != null)
+                    {
+                        <div class="alert alert-info">
+                            <strong>Last Booking:</strong><br />
+                            <span>Check-in: @latestBooking.CheckIn.ToString("yyyy-MM-dd")</span><br />
+                            <span>Check-out: @latestBooking.CheckOut.ToString("yyyy-MM-dd")</span><br />
+                            <span>Guests: @latestBooking.Guests</span><br />
+                            <span>Total Price: $@latestBooking.TotalPrice.ToString("0.00")</span>
+                        </div>
+                    }
                     <div class="mb-3">
                         <label for="checkIn" class="form-label">Check-in</label>
-                        <input type="date" class="form-control" id="checkIn" min="@DateTime.UtcNow.ToString("yyyy-MM-dd")">
+                        <input type="date" class="form-control" id="checkIn" name="checkIn" min="@today" value="@today">
                     </div>
                     <div class="mb-3">
                         <label for="checkOut" class="form-label">Check-out</label>
-                        <input type="date" class="form-control" id="checkOut" min="@DateTime.UtcNow.AddDays(1).ToString("yyyy-MM-dd")">
+                        <input type="date" class="form-control" id="checkOut" name="checkOut" min="@tomorrow" value="@tomorrow">
                     </div>
                     <div class="mb-3">
                         <label for="guests" class="form-label">Guests</label>
-                        <select class="form-select" id="guests">
-                            <option value="1">1 guest</option>
-                            <option value="2" selected>2 guests</option>
-                            <option value="3">3 guests</option>
-                            <option value="4">4 guests</option>
-                            <option value="5">5 guests</option>
+                        <select class="form-select" id="guests" name="guests">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <option value="@i">@i guest@(i > 1 ? "s" : "")</option>
+                            }
                         </select>
                     </div>
                     
                     <div class="d-grid gap-2 mt-4">
-                        <button class="btn btn-primary btn-lg" type="button" disabled>
-                            Book Now
-                        </button>
-                        <small class="text-muted text-center">Booking functionality not implemented in this demo</small>
+                        <form asp-controller="Booking" asp-action="Create" method="post">
+                            <input type="hidden" name="hotelId" value="@Model.Item1.Id" />
+                            <input type="hidden" name="hotelName" value="@Model.Item1.Name" />
+                            <input type="hidden" name="pricePerNight" value="@Model.Item1.PricePerNight" />
+                            <input type="hidden" name="checkIn" id="formCheckIn" />
+                            <input type="hidden" name="checkOut" id="formCheckOut" />
+                            <input type="hidden" name="guests" id="formGuests" />
+                            <button class="btn btn-primary btn-lg" type="submit" id="bookNowBtn">Change Dates</button>
+                        </form>
                     </div>
+                    <small class="text-muted text-center d-block mt-2" id="bookingNote"></small>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+@if (TempData["BookingError"] != null)
+{
+    <div class="alert alert-danger">@TempData["BookingError"]</div>
+}
+
 @section Scripts {
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
     <script>
         function initMap() {
-            const hotelLocation = { lat: @Model.Latitude, lng: @Model.Longitude };
+            const hotelLocation = { lat: @Model.Item1.Latitude, lng: @Model.Item1.Longitude };
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 15,
                 center: hotelLocation,
@@ -129,8 +150,28 @@
             const marker = new google.maps.Marker({
                 position: hotelLocation,
                 map: map,
-                title: "@Model.Name"
+                title: "@Model.Item1.Name"
             });
         }
+        // Booking form JS
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkIn = document.getElementById('checkIn');
+            const checkOut = document.getElementById('checkOut');
+            const guests = document.getElementById('guests');
+            const formCheckIn = document.getElementById('formCheckIn');
+            const formCheckOut = document.getElementById('formCheckOut');
+            const formGuests = document.getElementById('formGuests');
+            const bookNowBtn = document.getElementById('bookNowBtn');
+            const bookingNote = document.getElementById('bookingNote');
+            function updateFormFields() {
+                formCheckIn.value = checkIn.value;
+                formCheckOut.value = checkOut.value;
+                formGuests.value = guests.value;
+            }
+            checkIn.addEventListener('change', updateFormFields);
+            checkOut.addEventListener('change', updateFormFields);
+            guests.addEventListener('change', updateFormFields);
+            updateFormFields();
+        });
     </script>
 }

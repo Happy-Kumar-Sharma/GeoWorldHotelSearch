@@ -52,7 +52,18 @@ public class HotelsController : Controller
             return NotFound();
         }
         
-        return View(hotel);
+        // Get latest booking for this hotel (for demo: show most recent by CreatedAt)
+        Booking? latestBooking = null;
+        using (var scope = HttpContext.RequestServices.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetService<GeoWorldHotelSearch.Data.AppDbContext>();
+            latestBooking = db?.Bookings
+                .Where(b => b.HotelId == id)
+                .OrderByDescending(b => b.CreatedAt)
+                .FirstOrDefault();
+        }
+        
+        return View((hotel, latestBooking));
     }
 
     [HttpGet]
@@ -135,9 +146,22 @@ public class HotelsController : Controller
             return NotFound();
         }
 
+        // Bind amenities from form
+        if (Request.Form.TryGetValue("AmenitiesList", out var amenities))
+        {
+            hotel.Amenities = amenities.ToList();
+        }
+        else
+        {
+            hotel.Amenities = new List<string>();
+        }
+
+        // Ensure UTC for CreatedAt and UpdatedAt
+        hotel.CreatedAt = DateTime.SpecifyKind(hotel.CreatedAt, DateTimeKind.Utc);
+        hotel.UpdatedAt = DateTime.UtcNow;
+
         if (ModelState.IsValid)
         {
-            hotel.UpdatedAt = DateTime.UtcNow; // ✅ Set as UTC
             await _hotelService.UpdateHotelAsync(hotel);
             return RedirectToAction(nameof(Index));
         }

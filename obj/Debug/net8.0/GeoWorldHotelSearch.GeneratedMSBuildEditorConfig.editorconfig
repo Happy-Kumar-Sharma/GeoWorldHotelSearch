@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/happy/learning/GeoWorldHotelSearch
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/happy/learning/GeoWorldHotelSearch/Views/Booking/Confirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQm9va2luZy9Db25maXJtYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/happy/learning/GeoWorldHotelSearch/Views/Home/Documentation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Eb2N1bWVudGF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
