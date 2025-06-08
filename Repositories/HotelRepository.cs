@@ -75,4 +75,9 @@ public class HotelRepository : IHotelRepository
             .Take(maxCount)
             .ToListAsync();
     }
+
+    public IQueryable<Hotel> Query()
+    {
+        return _context.Hotels.AsQueryable();
+    }
 }

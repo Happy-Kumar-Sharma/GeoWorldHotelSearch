@@ -69,20 +69,11 @@ public class HotelsController : Controller
     [HttpGet]
     public async Task<IActionResult> Search(string query, int page = 1, 
         decimal? minPrice = null, decimal? maxPrice = null, 
-        List<int> stars = null, List<string> amenities = null,
+        List<int>? stars = null, List<string>? amenities = null,
         string sortOrder = "relevance")
     {
-        if (string.IsNullOrWhiteSpace(query))
-        {
-            return RedirectToAction(nameof(Index));
-        }
-        
-        int pageSize = int.Parse(_configuration["Pagination:PageSize"]);
-        
-        // var searchResults = await _elasticsearchService.SearchHotelsAsync(
-        //     query, page, pageSize, minPrice, maxPrice, stars, amenities, sortOrder);
-        var searchResults = await _hotelService.SearchHotelsAsync(query, page, pageSize);
-
+        int pageSize = _configuration.GetValue<int>("Pagination:PageSize", 10);
+        var searchResults = await _hotelService.SearchHotelsAsync(query, page, pageSize, minPrice, maxPrice, stars, amenities, sortOrder);
         
         var viewModel = new SearchViewModel
         {
