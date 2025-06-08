@@ -167,6 +167,19 @@ dotnet watch run
 
 ---
 
+## 🌟 Rolling Featured Hotels
+
+- **Mark/Unmark as Featured:** Admins and users can mark any hotel as "Featured" directly from the hotel list, details, or edit screens.
+- **Home Page Display:** Only featured hotels are shown in the "Featured Hotels" section on the home page. If no hotels are featured, a message is shown.
+- **How to Use:**
+  - On the Hotels list or details page, click the star button to mark/unmark a hotel as featured.
+  - On the Edit Hotel page, use the "Mark as Featured Hotel" checkbox.
+  - Changes are reflected instantly in the UI and on the home page.
+- **API:** The backend exposes a `SetFeatured` action for toggling featured status.
+- **Database:** The `Hotels` table includes an `IsFeatured` column (bool).
+
+---
+
 ## 🛡️ Security
 
 See [SECURITY.md](SECURITY.md) for security policy and reporting vulnerabilities.

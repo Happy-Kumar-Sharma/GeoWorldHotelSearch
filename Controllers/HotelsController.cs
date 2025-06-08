@@ -195,4 +195,21 @@ public class HotelsController : Controller
         await _hotelService.SeedHotelsAsync(count);
         return RedirectToAction(nameof(Index));
     }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SetFeatured(int id, bool isFeatured, string? returnUrl = null)
+    {
+        var hotel = await _hotelService.GetHotelByIdAsync(id);
+        if (hotel == null)
+        {
+            return NotFound();
+        }
+        hotel.IsFeatured = isFeatured;
+        hotel.UpdatedAt = DateTime.UtcNow;
+        await _hotelService.UpdateHotelAsync(hotel);
+        if (!string.IsNullOrEmpty(returnUrl))
+            return Redirect(returnUrl);
+        return RedirectToAction(nameof(Index));
+    }
 }

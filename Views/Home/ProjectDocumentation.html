@@ -245,6 +245,21 @@
       <li>Thanks to contributors and testers!</li>
     </ul>
 
+    <div class="section-title">Rolling Featured Hotels</div>
+    <ul>
+      <li><b>Mark/Unmark as Featured:</b> Admins and users can mark any hotel as <span class="badge bg-warning text-dark">Featured</span> directly from the hotel list, details, or edit screens.</li>
+      <li><b>Home Page Display:</b> Only featured hotels are shown in the "Featured Hotels" section on the home page. If none are featured, a message is shown.</li>
+      <li><b>How to Use:</b>
+        <ul>
+          <li>On the Hotels list or details page, click the star button to mark/unmark a hotel as featured.</li>
+          <li>On the Edit Hotel page, use the "Mark as Featured Hotel" checkbox.</li>
+          <li>Changes are reflected instantly in the UI and on the home page.</li>
+        </ul>
+      </li>
+      <li><b>API:</b> The backend exposes a <code>SetFeatured</code> action for toggling featured status.</li>
+      <li><b>Database:</b> The <code>Hotels</code> table includes an <code>IsFeatured</code> column (bool).</li>
+    </ul>
+
     <div class="footer">
       <div class="mb-2">
         <b>GeoWorldHotelSearch</b> &copy; 2025 &mdash; <a href="https://github.com/Happy-Kumar-Sharma/GeoWorldHotelSearch" class="text-info">GitHub</a>

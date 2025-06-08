@@ -12,4 +12,5 @@ public interface IHotelRepository
     Task UpdateAsync(Hotel hotel);
     Task DeleteAsync(int id);
     Task<bool> ExistsAsync(int id);
+    Task<IEnumerable<Hotel>> GetFeaturedAsync(int maxCount = 6);
 }
