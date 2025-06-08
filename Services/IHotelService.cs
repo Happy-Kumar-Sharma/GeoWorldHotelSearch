@@ -1,0 +1,15 @@
+using GeoWorldHotelSearch.Models;
+
+namespace GeoWorldHotelSearch.Services;
+
+public interface IHotelService
+{
+    Task<IEnumerable<Hotel>> GetAllHotelsAsync(int page = 1, int pageSize = 10);
+    Task<Hotel?> GetHotelByIdAsync(int id);
+    Task<int> GetTotalHotelsCountAsync();
+    Task<Hotel> CreateHotelAsync(Hotel hotel);
+    Task UpdateHotelAsync(Hotel hotel);
+    Task DeleteHotelAsync(int id);
+    Task<(IEnumerable<Hotel> Hotels, long Total)> SearchHotelsAsync(string query, int page = 1, int pageSize = 10);
+    Task SeedHotelsAsync(int count = 1000);
+}

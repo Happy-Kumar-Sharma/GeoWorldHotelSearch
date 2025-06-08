@@ -1,0 +1,175 @@
+@{
+    ViewData["Title"] = "Documentation";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="list-group sticky-top" style="top: 20px;">
+                <a href="#overview" class="list-group-item list-group-item-action">Overview</a>
+                <a href="#technologies" class="list-group-item list-group-item-action">Technologies</a>
+                <a href="#architecture" class="list-group-item list-group-item-action">Architecture</a>
+                <a href="#setup" class="list-group-item list-group-item-action">Setup Guide</a>
+                <a href="#api" class="list-group-item list-group-item-action">API Reference</a>
+                <a href="#search" class="list-group-item list-group-item-action">Search Functionality</a>
+                <a href="#elasticsearch" class="list-group-item list-group-item-action">Elasticsearch</a>
+                <a href="#admin" class="list-group-item list-group-item-action">Admin Features</a>
+            </div>
+        </div>
+        
+        <div class="col-md-9">
+            <h1 class="mb-4">GeoWorldHotelSearch Documentation</h1>
+            
+            <section id="overview" class="mb-5">
+                <h2>Overview</h2>
+                <p>
+                    GeoWorldHotelSearch is a full-stack, production-grade hotel search engine built with ASP.NET Core 8.0 MVC.
+                    It provides blazing-fast full-text search capabilities, a rich UI, and real-time analytics.
+                </p>
+                <p>
+                    The application is designed to handle over 50 million hotel records efficiently using PostgreSQL for data storage
+                    and Elasticsearch for high-performance search functionality.
+                </p>
+            </section>
+            
+            <section id="technologies" class="mb-5">
+                <h2>Technologies Used</h2>
+                <ul>
+                    <li><strong>Backend:</strong> ASP.NET Core 8.0 MVC</li>
+                    <li><strong>Database:</strong> PostgreSQL with Entity Framework Core</li>
+                    <li><strong>Search Engine:</strong> Elasticsearch with NEST client</li>
+                    <li><strong>Frontend:</strong> Bootstrap 5, jQuery, Chart.js</li>
+                    <li><strong>API Documentation:</strong> Swagger/OpenAPI</li>
+                    <li><strong>Data Generation:</strong> Bogus</li>
+                </ul>
+            </section>
+            
+            <section id="architecture" class="mb-5">
+                <h2>Architecture</h2>
+                <p>
+                    The application follows the MVC (Model-View-Controller) architecture pattern with a clear separation of concerns:
+                </p>
+                <ul>
+                    <li><strong>Models:</strong> Represent the data entities (Hotel, SearchQuery, etc.)</li>
+                    <li><strong>Views:</strong> User interface templates</li>
+                    <li><strong>Controllers:</strong> Handle HTTP requests and responses</li>
+                    <li><strong>Services:</strong> Contain business logic</li>
+                    <li><strong>Repositories:</strong> Handle data access operations</li>
+                </ul>
+                <p>
+                    The application also implements the Repository and Service patterns to ensure clean separation between
+                    data access logic and business logic.
+                </p>
+            </section>
+            
+            <section id="setup" class="mb-5">
+                <h2>Setup Guide</h2>
+                <h4>Prerequisites</h4>
+                <ul>
+                    <li>.NET 8.0 SDK</li>
+                    <li>PostgreSQL</li>
+                    <li>Elasticsearch 7.x</li>
+                    <li>Docker (optional)</li>
+                </ul>
+                
+                <h4>Local Setup</h4>
+                <ol>
+                    <li>Clone the repository</li>
+                    <li>Update the connection strings in <code>appsettings.json</code></li>
+                    <li>Run database migrations: <code>dotnet ef database update</code></li>
+                    <li>Start the application: <code>dotnet run</code></li>
+                    <li>Navigate to <code>https://localhost:7034</code></li>
+                </ol>
+                
+                <h4>Docker Setup</h4>
+                <ol>
+                    <li>Run <code>docker-compose up -d</code> to start PostgreSQL and Elasticsearch</li>
+                    <li>Update the connection strings in <code>appsettings.json</code> to point to the Docker containers</li>
+                    <li>Start the application: <code>dotnet run</code></li>
+                </ol>
+                
+                <h4>Seeding Data</h4>
+                <p>
+                    To seed the database with sample hotel data, navigate to the Hotels page and click the "Seed Data" button.
+                    You can specify the number of records to generate.
+                </p>
+            </section>
+            
+            <section id="api" class="mb-5">
+                <h2>API Reference</h2>
+                <p>
+                    The application provides a RESTful API for programmatic access to hotel data.
+                    API documentation is available through Swagger at <code>/swagger</code>.
+                </p>
+                
+                <h4>Endpoints</h4>
+                <ul>
+                    <li><code>GET /api/hotels</code> - Get paginated list of hotels</li>
+                    <li><code>GET /api/hotels/{id}</code> - Get hotel by ID</li>
+                    <li><code>POST /api/hotels</code> - Create a new hotel</li>
+                    <li><code>PUT /api/hotels/{id}</code> - Update an existing hotel</li>
+                    <li><code>DELETE /api/hotels/{id}</code> - Delete a hotel</li>
+                    <li><code>GET /api/search?query={query}</code> - Search hotels</li>
+                    <li><code>GET /api/dashboard/stats</code> - Get dashboard statistics</li>
+                </ul>
+            </section>
+            
+            <section id="search" class="mb-5">
+                <h2>Search Functionality</h2>
+                <p>
+                    The search functionality is powered by Elasticsearch, providing fast and relevant results.
+                    The search query is executed against multiple fields including hotel name, description, location, and city.
+                </p>
+                
+                <h4>Search Features</h4>
+                <ul>
+                    <li>Full-text search with relevance scoring</li>
+                    <li>Fuzzy matching for typo tolerance</li>
+                    <li>Field boosting (name and location are weighted higher)</li>
+                    <li>Pagination for handling large result sets</li>
+                </ul>
+            </section>
+            
+            <section id="elasticsearch" class="mb-5">
+                <h2>Elasticsearch Configuration</h2>
+                <p>
+                    The application uses a custom Elasticsearch index with analyzers optimized for hotel search.
+                    The index is automatically created if it doesn't exist.
+                </p>
+                
+                <h4>Index Features</h4>
+                <ul>
+                    <li>Custom analyzer with stemming and stop words</li>
+                    <li>Geo-point mapping for location-based queries</li>
+                    <li>Keyword fields for exact matching and aggregations</li>
+                    <li>Optimized for handling 50M+ records</li>
+                </ul>
+            </section>
+            
+            <section id="admin" class="mb-5">
+                <h2>Admin Features</h2>
+                <p>
+                    The admin dashboard provides insights into search patterns and system usage.
+                </p>
+                
+                <h4>Dashboard Features</h4>
+                <ul>
+                    <li>Total hotels and searches count</li>
+                    <li>Recent search queries</li>
+                    <li>Top search terms</li>
+                    <li>User locations</li>
+                    <li>Search volume over time</li>
+                </ul>
+                
+                <h4>Admin Credentials</h4>
+                <p>
+                    For demo purposes, use the following credentials to access admin features:
+                </p>
+                <ul>
+                    <li><strong>Username:</strong> admin</li>
+                    <li><strong>Password:</strong> Admin123!</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</div>

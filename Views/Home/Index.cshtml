@@ -1,0 +1,57 @@
+﻿@model IEnumerable<GeoWorldHotelSearch.Models.Hotel>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mt-4">
+    <div class="jumbotron bg-light p-5 rounded">
+        <h1 class="display-4">GeoWorld Hotel Search</h1>
+        <p class="lead">Find your perfect stay from millions of hotels worldwide</p>
+        
+        <form asp-controller="Hotels" asp-action="Search" method="get" class="my-4">
+            <div class="input-group input-group-lg">
+                <input type="text" name="query" class="form-control" placeholder="Search hotels by name, location, or amenities...">
+                <button class="btn btn-primary" type="submit">
+                    <i class="bi bi-search"></i> Search
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <h2 class="mt-5 mb-4">Featured Hotels</h2>
+    
+    <div class="row">
+        @foreach (var hotel in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="@(string.IsNullOrEmpty(hotel.ImageUrl) ? "/images/hotel-placeholder.jpg" : hotel.ImageUrl)" 
+                         class="card-img-top" alt="@hotel.Name" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@hotel.Name</h5>
+                        <p class="card-text text-muted">@hotel.City, @hotel.Country</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                @for (int i = 0; i < hotel.Stars; i++)
+                                {
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                }
+                            </div>
+                            <span class="badge bg-primary">$@hotel.PricePerNight.ToString("0.00")/night</span>
+                        </div>
+                        <p class="card-text mt-2">
+                            @(hotel.Description.Length > 100 ? hotel.Description.Substring(0, 100) + "..." : hotel.Description)
+                        </p>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <a asp-controller="Hotels" asp-action="Details" asp-route-id="@hotel.Id" class="btn btn-outline-primary w-100">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+    <div class="text-center mt-4 mb-5">
+        <a asp-controller="Hotels" asp-action="Index" class="btn btn-lg btn-outline-primary">View All Hotels</a>
+    </div>
+</div>

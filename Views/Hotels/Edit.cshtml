@@ -1,0 +1,244 @@
+@model GeoWorldHotelSearch.Models.Hotel
+@{
+    ViewData["Title"] = "Edit Hotel";
+}
+
+<div class="container mt-4">
+    <h1>Edit Hotel</h1>
+    
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CreatedAt" />
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Hotel Information</h5>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Hotel Name</label>
+                            <input asp-for="Name" class="form-control" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="5" required></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Location" class="form-label">Address</label>
+                                <input asp-for="Location" class="form-control" required />
+                                <span asp-validation-for="Location" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-3">
+                                <label asp-for="City" class="form-label">City</label>
+                                <input asp-for="City" class="form-control" required />
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-3">
+                                <label asp-for="Country" class="form-label">Country</label>
+                                <input asp-for="Country" class="form-control" required />
+                                <span asp-validation-for="Country" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Latitude" class="form-label">Latitude</label>
+                                <input asp-for="Latitude" class="form-control" type="number" step="0.000001" required />
+                                <span asp-validation-for="Latitude" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Longitude" class="form-label">Longitude</label>
+                                <input asp-for="Longitude" class="form-control" type="number" step="0.000001" required />
+                                <span asp-validation-for="Longitude" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="ImageUrl" class="form-label">Image URL</label>
+                            <input asp-for="ImageUrl" class="form-control" />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                            <small class="form-text text-muted">Leave empty to use a placeholder image</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Amenities</h5>
+                        <p class="text-muted">Select all amenities offered by the hotel</p>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="WiFi" id="wifi" 
+                                           @(Model.Amenities.Contains("WiFi") ? "checked" : "")>
+                                    <label class="form-check-label" for="wifi">WiFi</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Swimming Pool" id="pool"
+                                           @(Model.Amenities.Contains("Swimming Pool") ? "checked" : "")>
+                                    <label class="form-check-label" for="pool">Swimming Pool</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Gym" id="gym"
+                                           @(Model.Amenities.Contains("Gym") ? "checked" : "")>
+                                    <label class="form-check-label" for="gym">Gym</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Spa" id="spa"
+                                           @(Model.Amenities.Contains("Spa") ? "checked" : "")>
+                                    <label class="form-check-label" for="spa">Spa</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Restaurant" id="restaurant"
+                                           @(Model.Amenities.Contains("Restaurant") ? "checked" : "")>
+                                    <label class="form-check-label" for="restaurant">Restaurant</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Room Service" id="roomService"
+                                           @(Model.Amenities.Contains("Room Service") ? "checked" : "")>
+                                    <label class="form-check-label" for="roomService">Room Service</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Free Parking" id="parking"
+                                           @(Model.Amenities.Contains("Free Parking") ? "checked" : "")>
+                                    <label class="form-check-label" for="parking">Free Parking</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Airport Shuttle" id="shuttle"
+                                           @(Model.Amenities.Contains("Airport Shuttle") ? "checked" : "")>
+                                    <label class="form-check-label" for="shuttle">Airport Shuttle</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Breakfast Included" id="breakfast"
+                                           @(Model.Amenities.Contains("Breakfast Included") ? "checked" : "")>
+                                    <label class="form-check-label" for="breakfast">Breakfast Included</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Pet Friendly" id="petFriendly"
+                                           @(Model.Amenities.Contains("Pet Friendly") ? "checked" : "")>
+                                    <label class="form-check-label" for="petFriendly">Pet Friendly</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Business Center" id="business"
+                                           @(Model.Amenities.Contains("Business Center") ? "checked" : "")>
+                                    <label class="form-check-label" for="business">Business Center</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" name="AmenitiesList" value="Conference Rooms" id="conference"
+                                           @(Model.Amenities.Contains("Conference Rooms") ? "checked" : "")>
+                                    <label class="form-check-label" for="conference">Conference Rooms</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Pricing & Rating</h5>
+                        
+                        <div class="mb-3">
+                            <label asp-for="PricePerNight" class="form-label">Price Per Night ($)</label>
+                            <input asp-for="PricePerNight" class="form-control" type="number" step="0.01" min="0" required />
+                            <span asp-validation-for="PricePerNight" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Stars" class="form-label">Star Rating</label>
+                            <select asp-for="Stars" class="form-select" required>
+                                <option value="">Select star rating</option>
+                                <option value="1">1 Star</option>
+                                <option value="2">2 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="5">5 Stars</option>
+                            </select>
+                            <span asp-validation-for="Stars" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Rating" class="form-label">Guest Rating (0-5)</label>
+                            <input asp-for="Rating" class="form-control" type="number" step="0.1" min="0" max="5" required />
+                            <span asp-validation-for="Rating" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Last Updated</label>
+                            <p class="form-control-plaintext">@Model.UpdatedAt.ToString("MMM dd, yyyy HH:mm")</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Location Map</h5>
+                        <p class="text-muted">Click on the map to update coordinates</p>
+                        <div id="map" style="height: 300px; width: 100%;"></div>
+                    </div>
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
+                    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script>
+        let map;
+        let marker;
+        
+        function initMap() {
+            // Use hotel's coordinates
+            const hotelLocation = { 
+                lat: parseFloat(document.getElementById("Latitude").value), 
+                lng: parseFloat(document.getElementById("Longitude").value) 
+            };
+            
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: hotelLocation,
+            });
+            
+            // Add marker at hotel location
+            marker = new google.maps.Marker({
+                position: hotelLocation,
+                map: map,
+                title: document.getElementById("Name").value
+            });
+            
+            // Add click listener to map
+            map.addListener("click", (event) => {
+                updateMarker(event.latLng);
+            });
+        }
+        
+        function updateMarker(location) {
+            // Update marker position
+            marker.setPosition(location);
+            
+            // Update form fields
+            document.getElementById("Latitude").value = location.lat();
+            document.getElementById("Longitude").value = location.lng();
+        }
+    </script>
+}
