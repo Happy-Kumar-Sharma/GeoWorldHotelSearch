@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeoWorldHotelSearch Documentation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background: #f8fafc; }
+    .hero {
+      background: linear-gradient(90deg, #007cf0 0%, #00dfd8 100%);
+      color: #fff;
+      padding: 3rem 1rem 2rem 1rem;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      color: #007cf0;
+    }
+    .section-title {
+      border-left: 5px solid #00dfd8;
+      padding-left: 0.75rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      font-size: 2rem;
+    }
+    .code-block {
+      background: #23272e;
+      color: #fff;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      overflow-x: auto;
+    }
+    .faq-question {
+      font-weight: 600;
+      color: #007cf0;
+    }
+    .project-structure {
+      background: #f1f5f9;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .footer {
+      margin-top: 3rem;
+      padding: 2rem 0 1rem 0;
+      background: #23272e;
+      color: #fff;
+      border-radius: 1rem 1rem 0 0;
+      text-align: center;
+    }
+    .logo {
+      width: 60px;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-lg">
+    <div class="hero text-center">
+      <img src="screenshot.png" alt="GeoWorldHotelSearch Logo" class="logo">
+      <h1 class="display-4 fw-bold mb-3">GeoWorldHotelSearch</h1>
+      <p class="lead mb-4">Production-grade, blazing-fast hotel search engine with full-text and geospatial search.<br>Built on ASP.NET Core 8, PostgreSQL, and Elasticsearch.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <span class="badge bg-light text-dark fs-6"><i class="bi bi-dot"></i> ASP.NET Core 8</span>
+        <span class="badge bg-light text-dark fs-6"><i class="bi bi-database"></i> PostgreSQL</span>
+        <span class="badge bg-light text-dark fs-6"><i class="bi bi-search"></i> Elasticsearch</span>
+        <span class="badge bg-light text-dark fs-6"><i class="bi bi-bootstrap"></i> Bootstrap 5</span>
+        <span class="badge bg-light text-dark fs-6"><i class="bi bi-git"></i> Open Source</span>
+      </div>
+    </div>
+
+    <div class="row text-center mb-5">
+      <div class="col-md-4 mb-4">
+        <div class="feature-icon mb-2"><i class="bi bi-lightning-charge"></i></div>
+        <h5>Blazing Fast Search</h5>
+        <p>Full-text, typo-tolerant, and geospatial hotel search powered by Elasticsearch.</p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-icon mb-2"><i class="bi bi-geo-alt"></i></div>
+        <h5>Location & Analytics</h5>
+        <p>Find hotels by city, country, or map. Real-time admin dashboard with analytics.</p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-icon mb-2"><i class="bi bi-pencil-square"></i></div>
+        <h5>Easy to Edit & Extend</h5>
+        <p>Modern codebase, clear structure, and full API docs. Start hacking in minutes!</p>
+      </div>
+    </div>
+
+    <div class="section-title">Getting Started</div>
+    <ol class="mb-4">
+      <li><b>Install:</b> .NET 8 SDK, PostgreSQL, Elasticsearch 7.x, (optional: Docker)</li>
+      <li><b>Clone:</b> <span class="code-block">git clone https://github.com/Happy-Kumar-Sharma/GeoWorldHotelSearch.git</span></li>
+      <li><b>Configure:</b> Edit <code>appsettings.json</code> for DB and Elasticsearch</li>
+      <li><b>Database:</b> <span class="code-block">dotnet ef database update</span></li>
+      <li><b>Run:</b> <span class="code-block">dotnet run</span> and open <a href="https://localhost:7034">https://localhost:7034</a></li>
+    </ol>
+
+    <div class="section-title">Prerequisites</div>
+    <ul>
+      <li><b>OS:</b> Windows, Linux, or macOS</li>
+      <li><b>.NET 8 SDK:</b> <a href="https://dotnet.microsoft.com/download/dotnet/8.0" target="_blank">Download</a></li>
+      <li><b>PostgreSQL:</b> <a href="https://www.postgresql.org/download/" target="_blank">Download</a></li>
+      <li><b>Elasticsearch 7.x:</b> <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank">Download</a></li>
+      <li><b>Docker (optional):</b> <a href="https://www.docker.com/" target="_blank">Download</a></li>
+      <li><b>Git:</b> <a href="https://git-scm.com/" target="_blank">Download</a></li>
+    </ul>
+
+    <div class="section-title">Environment Variables & Configuration</div>
+    <ul>
+      <li><b>appsettings.json</b> - Main config file. Set your PostgreSQL connection string and Elasticsearch URL here.</li>
+      <li><b>Environment Variables:</b>
+        <ul>
+          <li><code>ASPNETCORE_ENVIRONMENT</code> (Development/Production)</li>
+          <li><code>ConnectionStrings__DefaultConnection</code> (overrides DB connection)</li>
+          <li><code>Elasticsearch__Uri</code> (overrides ES URL)</li>
+        </ul>
+      </li>
+      <li>For secrets, use <code>dotnet user-secrets</code> in development.</li>
+    </ul>
+
+    <div class="section-title">Troubleshooting & Common Issues</div>
+    <ul>
+      <li><b>PostgreSQL connection errors:</b> Check your connection string and ensure the DB is running.</li>
+      <li><b>Elasticsearch not reachable:</b> Make sure ES is running at the configured URL.</li>
+      <li><b>Port conflicts:</b> Change ports in <code>appsettings.json</code> or Docker scripts.</li>
+      <li><b>Docker issues:</b> Try <code>docker-compose down</code> and <code>docker-compose up -d</code> again.</li>
+      <li><b>Migration errors:</b> Delete the DB and rerun <code>dotnet ef database update</code>.</li>
+      <li><b>Seeding fails:</b> Check logs for details; ensure DB and ES are up.</li>
+      <li><b>UI not updating:</b> Use <code>dotnet watch run</code> for hot reload.</li>
+      <li><b>Still stuck?</b> Check logs, open an issue on GitHub, or see the FAQ below.</li>
+    </ul>
+
+    <div class="section-title">Deployment</div>
+    <ul>
+      <li><b>Production Build:</b> <code>dotnet publish -c Release</code></li>
+      <li><b>Deploy to Linux server:</b> Copy published files, set up Nginx/Apache reverse proxy, and run as a systemd service.</li>
+      <li><b>Docker Compose:</b> Use <code>docker-compose up -d</code> for DB and ES. Add your own Dockerfile for the app if desired.</li>
+      <li><b>Cloud:</b> Deploy to Azure App Service, AWS Elastic Beanstalk, or DigitalOcean App Platform. Set environment variables as needed.</li>
+      <li><b>HTTPS:</b> Use a reverse proxy (Nginx/Apache) or configure Kestrel for SSL.</li>
+    </ul>
+
+    <div class="section-title">API Usage & Examples</div>
+    <ul>
+      <li><b>Swagger UI:</b> Visit <code>/swagger</code> for interactive API docs.</li>
+      <li><b>Sample: Get all hotels</b>
+        <pre class="code-block">GET /api/hotels?page=1&pageSize=10</pre>
+      </li>
+      <li><b>Sample: Search hotels</b>
+        <pre class="code-block">GET /api/search?query=paris</pre>
+      </li>
+      <li><b>Sample: Book a hotel</b>
+        <pre class="code-block">POST /api/bookings
+{
+  "hotelId": 1,
+  "checkIn": "2025-07-01",
+  "checkOut": "2025-07-05",
+  "guests": 2,
+  "name": "John Doe",
+  "email": "john@example.com"
+}</pre>
+      </li>
+      <li><b>Authentication:</b> (If enabled) Use JWT or cookie auth. See <code>Startup.cs</code> for details.</li>
+    </ul>
+
+    <div class="section-title">Security Best Practices</div>
+    <ul>
+      <li>Never commit secrets to source control. Use environment variables or <code>dotnet user-secrets</code>.</li>
+      <li>Keep dependencies up to date. Run <code>dotnet list package --outdated</code>.</li>
+      <li>Use HTTPS in production.</li>
+      <li>Restrict database/network access to trusted sources.</li>
+      <li>See <a href="../../SECURITY.md" target="_blank">SECURITY.md</a> for full policy.</li>
+    </ul>
+
+    <div class="section-title">Customization & Extending</div>
+    <ul>
+      <li><b>Edit UI:</b> Change Razor files in <code>Views/</code></li>
+      <li><b>Add/Change Models:</b> Edit files in <code>Models/</code> and run migrations if needed</li>
+      <li><b>Business Logic:</b> Update or add services in <code>Services/</code></li>
+      <li><b>API/Controllers:</b> Add endpoints in <code>Controllers/</code></li>
+      <li><b>Styling:</b> Edit CSS in <code>wwwroot/css/</code></li>
+      <li><b>JS:</b> Add scripts in <code>wwwroot/js/</code></li>
+      <li><b>Localization:</b> Add resource files for multi-language support.</li>
+      <li><b>Testing:</b> Add unit/integration tests in a <code>Tests/</code> folder.</li>
+    </ul>
+
+    <div class="section-title">Testing</div>
+    <ul>
+      <li><b>Unit Tests:</b> (If present) Run <code>dotnet test</code></li>
+      <li><b>Integration Tests:</b> Add tests for controllers/services as needed.</li>
+      <li><b>Manual Testing:</b> Use Swagger UI and the web app for end-to-end checks.</li>
+    </ul>
+
+    <div class="section-title">Performance & Scaling Tips</div>
+    <ul>
+      <li>Use pagination for all hotel/search queries.</li>
+      <li>Elasticsearch is optimized for millions of records, but tune JVM heap for large datasets.</li>
+      <li>Use connection pooling for PostgreSQL.</li>
+      <li>Deploy behind a reverse proxy for better performance and security.</li>
+      <li>Monitor logs and metrics (see admin dashboard for analytics).</li>
+    </ul>
+
+    <div class="section-title">Accessibility & UX</div>
+    <ul>
+      <li>UI is built with Bootstrap 5 for responsive, accessible design.</li>
+      <li>All forms have labels and validation messages.</li>
+      <li>Color contrast and font sizes are WCAG-friendly.</li>
+      <li>Test with screen readers for best results.</li>
+    </ul>
+
+    <div class="section-title">Support & Community</div>
+    <ul>
+      <li><b>GitHub Issues:</b> <a href="https://github.com/Happy-Kumar-Sharma/GeoWorldHotelSearch/issues" target="_blank">Open an issue</a> for bugs or questions.</li>
+      <li><b>Discussions:</b> Use GitHub Discussions for feature requests or help.</li>
+      <li><b>Contributing:</b> See the Contributing section above.</li>
+      <li><b>Contact:</b> <a href="mailto:your-email@example.com">your-email@example.com</a> (replace with maintainer email)</li>
+    </ul>
+
+    <div class="section-title">Changelog</div>
+    <ul>
+      <li>2025-06-09: Added booking system, improved amenities editing, and created this documentation.</li>
+      <li>2025-06-01: Initial public release.</li>
+      <li>See GitHub Releases for more.</li>
+    </ul>
+
+    <div class="section-title">License</div>
+    <ul>
+      <li>MIT License. See <a href="../../LICENSE" target="_blank">LICENSE</a> for details.</li>
+    </ul>
+
+    <div class="section-title">Credits</div>
+    <ul>
+      <li>Created by Happy Kumar Sharma</li>
+      <li>Inspired by open source hotel search projects and the .NET community</li>
+      <li>Thanks to contributors and testers!</li>
+    </ul>
+
+    <div class="footer">
+      <div class="mb-2">
+        <b>GeoWorldHotelSearch</b> &copy; 2025 &mdash; <a href="https://github.com/Happy-Kumar-Sharma/GeoWorldHotelSearch" class="text-info">GitHub</a>
+      </div>
+      <div>
+        <span class="me-2">MIT License</span>
+        <span class="me-2">|</span>
+        <a href="SECURITY.md" class="text-info">Security Policy</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

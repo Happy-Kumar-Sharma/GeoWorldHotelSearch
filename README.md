@@ -1,126 +1,187 @@
-# GeoWorldHotelSearch
+<!-- filepath: /home/happy/learning/GeoWorldHotelSearch/README.md -->
 
-A full-stack, production-grade hotel search engine built with ASP.NET Core 8.0 MVC. This application provides blazing-fast full-text search capabilities, a rich UI, and real-time analytics.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Happy-Kumar-Sharma/GeoWorldHotelSearch/master/screenshot.png" alt="GeoWorldHotelSearch Screenshot" width="600"/>
+</p>
 
-![GeoWorldHotelSearch Screenshot](screenshot.png)
+<h1 align="center">GeoWorldHotelSearch</h1>
 
-## Features
+<p align="center">
+  <b>Production-grade, blazing-fast hotel search engine with full-text and geospatial search, built on ASP.NET Core 8, PostgreSQL, and Elasticsearch.</b>
+</p>
 
-- Full-text search with Elasticsearch
-- Geospatial search capabilities
-- Responsive UI with Bootstrap 5
-- Admin dashboard with analytics
-- RESTful API with Swagger documentation
-- Data seeding for testing
+---
 
-## Setup Guide for Non-Technical Users
+<p align="center">
+  <a href="Views/Home/ProjectDocumentation.html" target="_blank" style="font-size:1.25rem;font-weight:bold;">
+    📖 <b>View Full Project Documentation (HTML)</b>
+  </a>
+</p>
 
-### Step 1: Install Required Software
+---
 
-1. **Install .NET 8.0 SDK**
-   - Go to [https://dotnet.microsoft.com/download/dotnet/8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
-   - Download and install the .NET 8.0 SDK for your operating system (Windows, macOS, or Linux)
-   - Verify installation by opening a command prompt/terminal and typing: `dotnet --version`
+## 🚀 Features
 
-2. **Install PostgreSQL**
-   - Go to [https://www.postgresql.org/download/](https://www.postgresql.org/download/)
-   - Download and install PostgreSQL for your operating system
-   - During installation:
-     - Remember the password you set for the 'postgres' user
-     - Keep the default port (5432)
-     - Complete the installation
+- 🌍 Full-text & geospatial hotel search (Elasticsearch)
+- 🗺️ Location-based filtering
+- 📊 Admin dashboard with analytics
+- 🏨 Hotel CRUD (Create, Read, Update, Delete)
+- 📝 Booking functionality with validation
+- 🧩 Modern, responsive UI (Bootstrap 5)
+- 🔒 Secure, production-ready code
+- 🧪 Data seeding for testing
+- 🛠️ RESTful API with Swagger/OpenAPI docs
 
-3. **Install Elasticsearch**
-   - Go to [https://www.elastic.co/downloads/elasticsearch](https://www.elastic.co/downloads/elasticsearch)
-   - Download and install Elasticsearch 7.x for your operating system
-   - Start Elasticsearch service after installation
+---
 
-### Step 2: Download and Set Up the Project
+## 🧑‍💻 Technologies Used
 
-1. **Download the Project**
-   - Download the project as a ZIP file from the repository
-   - Extract the ZIP file to a folder on your computer
+- **Backend:** ASP.NET Core 8.0 MVC
+- **Database:** PostgreSQL (with Entity Framework Core)
+- **Search Engine:** Elasticsearch 7.x (NEST client)
+- **Frontend:** Bootstrap 5, jQuery, Chart.js
+- **API Docs:** Swagger/OpenAPI
+- **Data Generation:** Bogus
+- **Containerization:** Docker (optional)
 
-2. **Configure the Database Connection**
-   - Open the extracted folder
-   - Find and open the file `appsettings.json` in a text editor
-   - Update the connection string with your PostgreSQL password:
-   ```
-   "ConnectionStrings": {
-     "DefaultConnection": "Host=localhost;Database=GeoWorldHotelSearch;Username=postgres;Password=YOUR_PASSWORD_HERE"
-   }
-   ```
-   - Save the file
+---
 
-3. **Configure Elasticsearch**
-   - In the same `appsettings.json` file, verify the Elasticsearch URL:
-   ```
-   "Elasticsearch": {
-     "Url": "http://localhost:9200"
-   }
-   ```
-   - Save the file if you made any changes
+## 📚 Prerequisites & Prior Knowledge
 
-### Step 3: Run the Application
+- **Required:**
+  - Basic understanding of C# and .NET
+  - Familiarity with using a terminal/command prompt
+- **Recommended:**
+  - Some experience with SQL databases (PostgreSQL)
+  - Basic knowledge of REST APIs
+  - (Optional) Docker basics for containerized setup
 
-1. **Open a Command Prompt/Terminal**
-   - Navigate to the extracted project folder
-   - For example: `cd C:\Users\YourName\Downloads\GeoWorldHotelSearch`
+---
 
-2. **Create the Database**
-   - Run the following command: `dotnet ef database update`
-   - This will create the database and all required tables
+## 🛠️ Quick Start (for Any Level Developer)
 
-3. **Start the Application**
-   - Run the following command: `dotnet run`
-   - Wait for the application to start
-   - You should see a message like: "Now listening on: https://localhost:7034"
+### 1. Install Required Tools
 
-4. **Open the Application in a Web Browser**
-   - Open your web browser
-   - Go to: `https://localhost:7034`
-   - You should see the GeoWorldHotelSearch homepage
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [Elasticsearch 7.x](https://www.elastic.co/downloads/elasticsearch)
+- [Docker](https://www.docker.com/) *(optional, for easy DB & ES setup)*
 
-### Step 4: Seed Sample Data
+### 2. Clone & Configure
 
-1. **Add Sample Hotels**
-   - In the application, click on "Hotels" in the navigation menu
-   - Click the "Seed Data" button
-   - Enter the number of sample hotels you want to create (e.g., 1000)
-   - Click "Generate"
-   - Wait for the data generation to complete
+```bash
+git clone https://github.com/Happy-Kumar-Sharma/GeoWorldHotelSearch.git
+cd GeoWorldHotelSearch
+```
 
-### Step 5: Explore the Application
+- Edit `appsettings.json`:
+  - Set your PostgreSQL password in `DefaultConnection`
+  - Ensure Elasticsearch URL is correct (default: `http://localhost:9200`)
 
-1. **Search for Hotels**
-   - Use the search bar on the homepage to search for hotels
-   - Try different search terms like "beach", "luxury", or city names
+### 3. Database & Elasticsearch Setup
 
-2. **View Hotel Details**
-   - Click on a hotel to view its details
-   - Explore the hotel information, amenities, and location map
+- **With Docker (Recommended for Beginners):**
+  - Run: `cd elastic-start-local/elastic-start-local && ./start.sh`
+  - This will start PostgreSQL and Elasticsearch containers
+- **Manual:**
+  - Start PostgreSQL and Elasticsearch services on your machine
 
-3. **Explore the API**
-   - Go to: `https://localhost:7034/swagger`
-   - This shows all available API endpoints for programmatic access
+### 4. Run Migrations & Seed Data
 
-## Troubleshooting
+```bash
+dotnet ef database update
+```
 
-### Database Connection Issues
-- Verify PostgreSQL is running
-- Check that the connection string in `appsettings.json` has the correct password
-- Make sure the PostgreSQL port (5432) is not blocked by a firewall
+- (Optional) Seed hotels via the web UI (Hotels > Seed Data)
 
-### Elasticsearch Issues
-- Verify Elasticsearch is running by opening: `http://localhost:9200` in your browser
-- You should see a JSON response with Elasticsearch version information
-- If not, start the Elasticsearch service
+### 5. Start the App
 
-### Application Won't Start
-- Make sure you have the correct .NET SDK version installed
-- Try running `dotnet restore` before `dotnet run`
-- Check for error messages in the command prompt/terminal
+```bash
+dotnet run
+```
+- Open [https://localhost:7034](https://localhost:7034) in your browser
 
-## License
+---
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## 🏗️ Project Structure
+
+```
+GeoWorldHotelSearch/
+├── Controllers/         # MVC controllers (API, Hotels, Booking, etc.)
+├── Data/                # EF Core DbContext
+├── Models/              # Data models (Hotel, Booking, etc.)
+├── Repositories/        # Data access layer
+├── Services/            # Business logic
+├── Views/               # Razor views (UI)
+├── wwwroot/             # Static files (CSS, JS, images)
+├── elastic-start-local/ # Docker scripts for local dev
+├── Migrations/          # EF Core migrations
+├── appsettings.json     # Configuration
+└── ...
+```
+
+---
+
+## 📝 Editing & Extending
+
+- **Edit UI:** Change Razor files in `Views/`
+- **Add/Change Models:** Edit files in `Models/` and run migrations if needed
+- **Business Logic:** Update or add services in `Services/`
+- **API/Controllers:** Add endpoints in `Controllers/`
+- **Styling:** Edit CSS in `wwwroot/css/`
+- **JS:** Add scripts in `wwwroot/js/`
+
+### Hot Reload (for UI changes)
+```bash
+dotnet watch run
+```
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repo & clone your fork
+2. Create a new branch: `git checkout -b feature/your-feature`
+3. Make your changes and commit: `git commit -am 'Add new feature'`
+4. Push to your fork: `git push origin feature/your-feature`
+5. Open a Pull Request on GitHub
+
+---
+
+## 🧑‍🔬 FAQ
+
+**Q: Do I need to know Docker?**
+- No, but it makes setup easier. Manual setup instructions are provided.
+
+**Q: Can I use SQLite or MySQL?**
+- The app is designed for PostgreSQL. You can adapt it, but some features (like JSON columns) are PostgreSQL-specific.
+
+**Q: How do I reset the database?**
+- Drop the DB in PostgreSQL, then run `dotnet ef database update` again.
+
+**Q: How do I edit hotel info or amenities?**
+- Use the web UI (Hotels > Edit) or update via the API.
+
+**Q: How do I run tests?**
+- (If tests are present) Run: `dotnet test`
+
+---
+
+## 🛡️ Security
+
+See [SECURITY.md](SECURITY.md) for security policy and reporting vulnerabilities.
+
+---
+
+## 🆘 Troubleshooting
+
+- **Database Issues:** Ensure PostgreSQL is running and connection string is correct
+- **Elasticsearch Issues:** Ensure ES is running at the configured URL
+- **Port Conflicts:** Change ports in `appsettings.json` or Docker scripts
+- **Other Issues:** Check logs in the terminal, or open an issue on GitHub
+
+---
+
+## 📄 License
+
+MIT License. See [LICENSE](LICENSE) for details.
