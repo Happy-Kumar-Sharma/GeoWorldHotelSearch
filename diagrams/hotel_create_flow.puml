@@ -1,0 +1,84 @@
+@startuml
+
+'title
+title GeoWorldHotelSearch: Hotel Create Flow (Step-by-Step)
+
+actor User as "User/Browser"
+
+' Components
+component "1. Browser (Chrome, Firefox, Edge, etc)" as Browser
+component "2. HTML/CSS/JS (Razor Views)" as Views
+component "3. Controllers (HotelsController)" as Controller
+component "4. Services (HotelService)" as Service
+component "5. Repositories (HotelRepository)" as Repository
+component "6. AppDbContext (EF Core)" as AppDbContext
+component "7. Database (PostgreSQL/SQL Server)" as Database
+component "8. Elasticsearch (Indexing)" as Elasticsearch
+component "9. appsettings.json" as AppSettings
+component "10. wwwroot/ (CSS, JS, images)" as StaticAssets
+
+' Hotel Create Flow (Step-by-step)
+User --> Browser : Step 1: Fill add hotel form
+Browser --> Views : Step 2: Render Create.cshtml
+Views --> Controller : Step 3: Submit new hotel (HTTP POST)
+Controller --> Service : Step 4: Call AddHotelAsync
+Service --> Repository : Step 5: Add hotel entity
+Repository --> AppDbContext : Step 6: EF Core Add/SaveChanges
+AppDbContext --> Database : Step 7: SQL INSERT
+Database --> AppDbContext : Step 8: Confirm insert
+AppDbContext --> Repository : Step 9: Return entity with ID
+Repository --> Service : Step 10: Return Hotel
+Service --> Elasticsearch : Step 11: Index hotel in Elasticsearch
+Elasticsearch --> Service : Step 12: Confirm index
+Service --> Controller : Step 13: Redirect to details/list
+Controller --> Views : Step 14: Show confirmation
+Views --> Browser : Step 15: Confirmation page
+
+' Static assets
+Browser --> StaticAssets : Step Z: Loads CSS/JS/images
+
+' Notes
+note right of User
+- Interacts via browser
+- Adds new hotel
+end note
+
+note right of Views
+- Razor page (Create.cshtml)
+- Renders add hotel form and confirmation
+end note
+
+note right of Controller
+- Handles HTTP requests
+- Validates input
+- Calls service methods
+end note
+
+note right of Service
+- Business logic
+- Validation
+- Calls repository
+- Indexes hotel in Elasticsearch
+end note
+
+note right of Repository
+- Data access logic
+- Uses EF Core
+end note
+
+note right of AppDbContext
+- EF Core context
+- Maps C# to DB
+end note
+
+note right of Database
+- Stores hotel data
+- Handles inserts
+end note
+
+note right of Elasticsearch
+- Indexes new hotel for search
+- Ensures hotel is searchable instantly
+end note
+
+@enduml

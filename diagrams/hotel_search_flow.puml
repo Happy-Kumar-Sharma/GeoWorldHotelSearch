@@ -1,0 +1,85 @@
+@startuml
+
+'title
+title GeoWorldHotelSearch: Hotel Search Flow (Step-by-Step)
+
+actor User as "User/Browser"
+
+' Components
+component "1. Browser (Chrome, Firefox, Edge, etc)" as Browser
+component "2. HTML/CSS/JS (Razor Views)" as Views
+component "3. Controllers (HotelsController)" as Controller
+component "4. Services (HotelService)" as Service
+component "5. Repositories (HotelRepository)" as Repository
+component "6. AppDbContext (EF Core)" as AppDbContext
+component "7. Database (PostgreSQL/SQL Server)" as Database
+component "8. Elasticsearch (optional)" as Elasticsearch
+component "9. appsettings.json" as AppSettings
+component "10. wwwroot/ (CSS, JS, images)" as StaticAssets
+
+' Hotel Search Flow (Step-by-step)
+User --> Browser : Step 1: Enter search query
+Browser --> Views : Step 2: Render search form (Index.cshtml)
+Views --> Controller : Step 3: Submit search (HTTP GET/POST)
+Controller --> Service : Step 4: Call SearchHotelsAsync
+Service --> Repository : Step 5: Query hotels (with filters)
+Repository --> AppDbContext : Step 6: EF Core LINQ query
+AppDbContext --> Database : Step 7: SQL SELECT
+Database --> AppDbContext : Step 8: Return hotel data
+AppDbContext --> Repository : Step 9: Return entities
+Repository --> Service : Step 10: Return List<Hotel>
+Service --> Controller : Step 11: Return List<HotelViewModel>
+Controller --> Views : Step 12: Pass model
+Views --> Browser : Step 13: Render results
+
+' Optional: Elasticsearch
+Service --> Elasticsearch : Step 5a: Full-text search (if enabled)
+Elasticsearch --> Service : Step 5b: Search results
+
+' Static assets
+Browser --> StaticAssets : Step Z: Loads CSS/JS/images
+
+' Notes
+note right of User
+- Interacts via browser
+- Searches for hotels
+end note
+
+note right of Views
+- Razor page (Index.cshtml)
+- Renders search form and results
+end note
+
+note right of Controller
+- Handles HTTP requests
+- Validates input
+- Calls service methods
+end note
+
+note right of Service
+- Business logic
+- Filtering, validation
+- Calls repository
+end note
+
+note right of Repository
+- Data access logic
+- Uses EF Core
+end note
+
+note right of AppDbContext
+- EF Core context
+- Maps C# to DB
+end note
+
+note right of Database
+- Stores hotel data
+- Handles queries
+end note
+
+note right of Elasticsearch
+- Used for advanced search
+- Optional
+end note
+
+@enduml
