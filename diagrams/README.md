@@ -1,0 +1,71 @@
+# Diagrams for GeoWorldHotelSearch
+
+This folder contains all architecture, flow, and technology stack diagrams for the GeoWorldHotelSearch project. These diagrams are used in the main documentation and are essential for understanding the system's structure and flows.
+
+## Contents
+- `*.puml`: PlantUML source files for each diagram
+- `*.png`: Rendered PNG images for documentation and UI embedding
+
+## How to Edit or Create Diagrams
+
+1. **Install PlantUML**
+    - `sudo apt-get update && sudo apt-get install -y plantuml` (Linux)
+    - For Windows/macOS, you can use:
+      - `choco install plantuml` (Windows with Chocolatey)
+      - `brew install plantuml` (macOS with Homebrew)
+    - Alternatively, you can use an online PlantUML editor or viewer.
+    - **Note:** If you prefer not to install PlantUML, you can use online tools or VS Code extensions.
+    - **VS Code Extensions:**
+      - "PlantUML" by jebbs
+      - "PlantUML Previewer" by vsch
+    - **Online Tools:**
+      - [PlantText](https://www.planttext.com/)
+      - [PlantUML Online Editor](https://www.plantuml.com/plantuml/uml/)
+   - You can use the [PlantUML standalone jar](https://plantuml.com/download) or a VS Code extension like "PlantUML" or "PlantUML Previewer".
+   - `plantuml project_architecture.puml` to generate the PNG for the project architecture diagram.
+   - Download the [PlantUML jar file](https://plantuml.com/download) and place it in this folder for command line rendering.
+   - Alternatively, you can use the PlantUML server for rendering diagrams online.
+
+2. **Edit Diagrams**
+   - Open any `.puml` file in your favorite text editor or PlantUML editor.
+   - Make your changes and save the file.
+
+3. **Render PNGs from PlantUML**
+   - **Command line (recommended):**
+     ```bash
+     java -jar plantuml.jar *.puml
+     ```
+     This will generate PNGs for all `.puml` files in the folder.
+   - **VS Code:**
+     - Install the "PlantUML" extension.
+     - Open a `.puml` file and use the preview or export features.
+   - **Online:**
+     - Use [PlantUML Online Server](https://www.plantuml.com/plantuml/uml/) to paste your `.puml` code and download the PNG.
+
+4. **Add or Update Diagrams**
+   - Add new `.puml` and `.png` files to this folder.
+   - Update references in the main documentation (`README.md`, `ProjectDocumentation.html`, etc.) as needed.
+
+## Diagram Links
+Paste your PlantUML editor links here for easy sharing and editing:
+
+- [Project Architecture Diagram](https://www.plantuml.com/plantuml/svg/TLPBSzis4BxpL-puKhcZHzrtTSZ4iPFO7NliMd9wo7Gw4Bcc4940YuMigB--omL1WNPrY4Nku_jsWM-NUKjUER-jgopx1fRQLvZvzYzyHFkdTLLnPJrM2rGkNyEzirymzt3EBzhpqzPXbgdSMmUFX0uKmKdxC7ldx8v_JrhK2ritrg3nbENn4KvskvsprizWTB5OZE5t_gThLIATdhGm2w-ypi-9S9ZsIUEEOFIW_hNk53xBwqngfDcrAV3hDAUrhwinH5UDBnpJwVGluMWZKkp5MZaiRjJURhq4f8OqyC8QxsnLeIFu7CWF9kOPGqixC2Mq1tkAgPg6q7jjIff-8MiazBnf5frnK2YwPvrZ9EzUXULwQ4bvEsCAT6iBhXr6aYJHxwpTC5tC39SHmjB41smiQM-TxgleJVkaaDIOrdAmfwZSxkMgFHxywZbU8bFRe7HTEkMrDJJxDiOUR6dafV9gfGXXjFZZHau1tHZkBVdI8Pl6W3uFZSPGbcqGj6PUf_A0APR9v8q81-QiKMpWR0xNNH31wCcwUWnvfVDDW3qafOgEoT_FuSQgWe342KgyBNlGkJ85a8WGgg12ePvEtmoqoN1CGuCOfaoK5Wb_u5yqJ7YrNDw3mt-sI1v67zylP_TtY-KfKoTPb2K8J9hgaH4Vi2qzj-P9bsaaKqUnHTuVvt2XgefWjILjaBXMMtB38voMqp64_HBK9pL4XMSHXzax6SPcQtdh0vWqKLNa_Och34qI5CehK3cZ4Y-TXyVBCR2dLR1GffBE4YG67eWmGl_SrV7-0v-OGyY3cw54Hl5Txh0-23E5Udsc0P9J3OheWBnZpp2BAqgapadihJJdKRx6cfdNofJSH1B3ARsuMvQ63wDFu99xvv0fJOjz_z9T_6pdjCTmh5aCEdfQlxPPVkkC90XbU0Vbscy5yEH0NYd6t0zgE7AnlytXlV7Qlxoirz8x-sukFSmkbtUzN8wCnzdPN2PFb9Qg__NOy-XAb1Jkq1Ge5zNFtYCbi3ns3nA21K_UxKtR_dbHwFPoL0N6UcwZ_GjEbsiFzadoiqcoMvwrWXKVbTWPBaVzZ2HmO-Y-eUnOR5UrzdAUDNMhYA3IPaCPbo1SsP1B6kFKK2B1upMqKrg2V6NP8Q8Sx24O_HrMJ_TLFKrB2fC9JyxMaFT7U9G-kGT6kU9vgN2ue8ZjdrIbWsYrQRQUBM6XKDmKarvWpx8xvLeAxJ3tnwdZDt4YHIXjNcuezjpnQaBoJiYJ9SAkMzKGOAT3y5QeG_z7EHCnCyBvYdoutoAEK8z-NJSLrWnFqAwhMRkjzg6iO-33p-KapCWUFZXLuywwpM1LIGD6bKY08OxGKt87oTewmfT-ShcPhRUJ4Wso2GjOxUDoPD-IkzmCDzHnr7uRiPuzvnFmNKE3ZZHvhZNia4ctnmgPZVyjzYq_jl-v_Gy0)
+- [Tools & Technology Stack Diagram](https://www.plantuml.com/plantuml/svg/XLTRS-964ttNh-ZoL_M5hOAGUpPwI2qNxFK6R2_2thoEf3RCMffHPaROvDUdMyCWYGgL5n2Qq_TpfkqFrWdZwhA8eczW8rs1aUDFk47zHPiY_wWT5WaAa-rWetLXuV-mmModTA6t1qYSo5wYI6HE6tYqQ41OkEA7yTJeL_g-Oi_NHYk7AeyoNLPQeN9mTJo7mMndT8b3k9O6d_NR41RvbdwYozvTiRiZi6lxSRDQZcT9ClwKmE0Bffo7oeN9hJUXLvnaBvpMpZeZAXWytb92eiHNRLuy_dJOjVZwkKPpW075MChK27FmOF-UovfIyMTLVNktsC1xIEP_KAFMjNAoH2hHQ6j7LI7SipQbTpFNxWvTrtQIF3JcCsqGLaypNzfPgXDRaHb3kgOB2kGEBTRx6DolLzvgSNrkCViV31wCtf95ATKMba9jQx55ZvybEs5wtLZUtds6WMz97yidlLmAOPtCh2VDuBekYf73DmUUHaEuhvpKIXJUl0Vdhiw54wcmlMmVj7LRWydd9Oo1FnCqUoRF6WlXlS5ywXq6-yONxkyhvYnpbyhi-Io4Se-h9GpcKeG-U1VXg0kVQnesqrKh9wH28_zk8diBVzh5tqW7WoSqbZ30HaOVAwQJBl0feUCSgR2rpD7GzvEqDHMKk3gN6WQtyuKtf8UkOQwTGWUpvIqCfhKiyl46hHklwv1JSqx7lUbSDzpmLYkvDKqHjaiJEgBU4QmiQoMp1W32i0pXLReTM8SLgBfCqTYeKVrez7lGASIGyFdtCT2HZS9hWWHT1iWFCQn9F-G5EegE0eeiMcK6cn_v-y2pfAaknK7NhcVWrHdGFyLmgnmQaJcv9uL4lNHQBGNypp5bidcWjFwgqJeBWvl5PlnmdspUHIsQZOyI2OQ_nB1umwnsQCEm2pHsp3oL6TfpQz_fOFrhtB0M9Xb1RKI70SVY2gZtCN1n4dk8GFU0-esRAd8x_cAaGo-7y-XzYOQ1VKSFHz7APq0bqWBpTwsC8k8VcpE1Wz4aXZEE1zJnWWl0QGoUeqJFXgSdN11RGCvYw0Wom8uA2w1v3ET23CYMnG6y88zJQCaU-TGOt8eaWAzZrePVTg7F_-hr9kwxvFGkT_TZpEl0iigoa3YtzauxcgUYJp1oktEWdqyRR-HNgZmosC9U2aXFXslCKExHYsS8f9uXa7n6aDHfAGdEoyOE8IjazcA1DFDY8z8RSBIe7pD8awpP6oTjwipL1kaDUJwfBXfHZ3DLNNBQghV9rbRKA4eO7c_fzuF1b0ZXu7GvNKxEYvgCvlShA8MILUslVNer-JJv4upNwsKFhG38P4NTXrTCuJdiIovRgBn02qRNZkgajhKo7bBdyTMogSm9zIeCGYKhf8xWnPYUCMH4QvXd0NcGgl0wRuEMBP4ulSe2xMUTVaMUkjDCNyTol5XWk_Le_8x2MgXObzQXSarWdgDGa29qbgasdMtQX5PYYtb3jEEck1YnHtFFrRmfK-HxeJBw4OvE6ty8fbODZSF27B40cl59SpIdAcG6egekHYQXXodckCT2LoLNYMelZLRyt8YWghHnbY1flTqs8yLS-jbI6igJUV7cK5dkF0UdjW-FgGrF5zF5F6va4qZN9iD05supaKQasWI6JWsrOzV4BT5m9XSzjYjxvA_B9jKXEBIkQKaO4TpLD-YW4jaB_RB_mK7lS9BdO_9H7FfqUwo87jYIqsOxBCL5Zs5m_Zgpn_q6KhNtcksoeK-JIrv3hxbz1ZaVXak7pHq4kLy8v3ZySPJhhEP9-oQtRZ_G8_y_ymy0)
+- [Hotel Search Flow Diagram](https://www.plantuml.com/plantuml/svg/VPRVRzis4CVVzLSSieV9G2pNJTCVmb0qSUmcXTCcjPS1UwCbnkP0aHgFZfFzzJkHea8DrXvYySTzxiYxxqdvWfOPkwzaalngXPKySR_mbUi_j97bjRPShZWpnIu7Dm4_WuNK1qXNbjVZpSkuUOwIX1LM6_WTkG66SD8C9fT67-XvGX5WfgjQAwui9aKOmiaqWzO8qjdEw8gVma8O_gYVJs5URcdARJ4w8P_1CCRVPd2zlbrEPglLvDiAqf_i7stWGV03UiODO-8ievCeQxIKt22axcBukkInrtdCliie0-P953o0xTH3xIGcpZFuoMkDWd8ZEgfRUl7WwpnctsTmKTTNc-Oi_Db2Eb_GkKmRBDwAgGyPN37BDWmvf7SQxTRmrVroGd_kWE66mIXcFsOmbmojAD0NEjMr5LenwPdUPWn-oe3LDN9hXTfYzXTg5Gwvyelzeh_9u70u6Atj15AgtIbyepzHiIt7DfUMKQGB99z8wla__Q7JdnFUUFovarCEZG5CSvWhItFqxDzxJcaEHWHuYGJpjpbLGvMlze_QL93UqD9pLk3ELdAKU8BOI2V1mHazzvjAM0Wvl5wlx-3hV3sv-x5QZv888Gz1D05_byECoN1JByuBV5554Wm9YWGJkFCSxfkRmSuXa1w4fSCBILV7KH81nFV44poypw4L62nllj-tYOej7Hfq4x0FEJXfpPVpsJe9kuDHFZRvjNkZ_46X9A0NPE1-dpgE52Iiu1ZTwLWYfsywOYdG_kPI-JbaSQ1uq-aHgAdshIuREX37b3CbwTmnHAWQsw2H8u8ywoHcEEwbr_UFjj7oVfF5v-tlT8LdEIpsKevTyeBcn2DmnJQIbwEaZnr9rVac3vqLdSXt833VWd73nBqPVFoPmrAp4i6_YIU-bni_txMbWQ9VC6Axiw0VtLSY6SDDqvYi82zFWi66GlXrVnYEJVErWaueOz0uIVgkV0s8yM_-cgB-jrl7RRgnrz9CbU6sGxuZWP2JQo8aHt3jR3Yr1zecy0EJWbHCEqBLUqihJGCZO9laYjkTBWU3X68GTxb7eJWYIBqL1IqiNFiAjJs59n-5DD85C9t-Xtp77vQnwrnWHH57e49WQFj1BxrFpJYOGz6jtBAQ2lyBM0rNbuDkkYyE5TYI0unU0L5-AR56yE5yzUJihr0weR3oYQc29jrMQAh8rnSQDl_o_0i0)
+- [Hotel Create Flow Diagram](https://www.plantuml.com/plantuml/svg/VLPRS-Cs3ttNhy3aU_YKcLZUNFQoVkXiuYHDThBRr7AtCtsZ9SHcHoPL0exZ_lf2ecXJdgeF5Y_4mG700uw_42l7ctML9FzdpHKcxHT-HlkxTLNvO1ch79KhLXDe5p1rg1ZXlh9RI7F6UhJOZPhnD4bKmTR1RuGE5C59CndVEBkLyKGOO6hNjJLec98YJE7aF8FE2DBfojardi6zTlXYtyxWhbpA4hauFG55mJ26NsJmCF_sD9xc-VXh3kbC_MqT_D2u9Ozffp7YCfD833jRLUW8qZOnEcnvs64TOwyooD6zwW83i5jwKBU84Uypc65jIRDrUe_QR-qyyB2EiHyokAxhsqKJ2xunf7Vt4fVhoEAZ6FKnWrl5Qg488Nssn4k7-QzFO_cr0OOCWr6C_PJ1NQM8TK7jjKFwQ4fyqsRfCRt36FWv0rNNXCnYIzcVP4q8ClUR_Kj_by5sktNMyXXIkRip-2e_lLPBfAwMh8JfcWYPH3t_fJzgzTSARpJwQI-d2JG6S3uHFLKLgBA4LUlanRfr4gm4uJKIx2ycC4F9sdLaMK4hbXxnHc8UQIDWBcNSBDQQmU2sOqaVvlDdUFubdvyc0U7vWau2-ce2KoKHNfU-vQvfPuea60aWqaV0l9-8UKW83MlU9P6LW7e22R0F4-X4rC37kNh5wKePgNeIcxVu8920_IYZQEZnUtutcoVXT93gqmHavqMxDMX3wBZ7C93MvwRul76comcscbVmU7kSsr45pzy5dDT9NBmZHGU4oABLTbT2ROx4tKVz6-T5dA1u2gG36Zc_R68ijSE2WIsKo4fNDAuqyR50Ue8ylvB9IWHVU3R5sff8ZiTw5sbC8qkefQcaWxgE0kLRAjP_t6l1pHyJUBAg9F0lwzZtPkFdksMP6Fc2qyiLWtrfN_ra91LbTAfWWbUjOE4fP5-qHeVMIAIzeC4dVIy-RJ7tZtWJDwIz9ZoLGz-STDJFe4pPAz0GIVooZ-11O1KIjBtgyAyD4ZSH_52LBeMNG9jwmxBJT2W1TLUyHbxPaeP8WbO4TxCXRP08AhlKHN3jGmnUtU7v7tbL8WteSf1n5ljecXDKKSIySaKKcd_GIzoYWkdCeTZlV5ErIE9_ZO1lRmRTXCT103bRjy-cbFsewlvT6AvYF_DGcav9uUfXVtndQ7FWqjITg4M53HKhmzKk8liYq-RVppy0)
+- [Hotel Search/Add Flow Diagram](https://www.plantuml.com/plantuml/svg/dLTjRzis4FwkNt78WCq1OglfUuMXQ68xBqNIfh6N0Vj6InUR6orgF3fkzkjt94r5tAhDsuTO8dKFxtXydkFb0rbXx6Qjikm7Awt2pF_2EUgVjL7LXRQePYXCkIh03o2Cu7iugIeuKteBWvd5PhXu7BhdOPQ9qce3Fn4Q40G7xYK_DNhBpmFs0sEzRdIDjQMiZAzmS3o2dH4CnYkZrtW4PzBWlVvw1DDgoKEqvU4128g6NVZp4LpChw_oyMoMVvp1u5RyeGtSITnImFZNBkB5Y2EfhT5AeI4O-EtHqrI0nN7gxUK8PcWUP8aHk1i6q6xGHRmQmIqscgJLHhQeTken09_6NUph4PmqpMJXOi6l5WRJCuxB16V9foxgpGWcmeg588J1ZIQxD3ZxSfNpdmymxZ0QTR5lHp1LWgmiAHptG3TMwbgeW4a-Te7lHY2QXj1QMIzfz2lfEWOv2vFfeJyRmNQxDLhR70PyTaVmaV_aMYoHThcqWZsT4A5DeKoOknddeKB8uLPMQFXv9saZ58CsbTGmk9nCmohyae2PBfMsDLeONrs6DFWXZn8x9iaksT6GnsxuLqDcn4INlw7nDk4rCM02d4lhl_AJTP3gALKIUILv2Gs7xrjX5E0CuBY0QMrvJ07x-mQPCD680O7iqVnvmRoggoVxUstMd1kU-ZegQMNNwZ0B2CPs61yNUC7FpM8jBKGsNCpdDt0-dUStdsVpmon2WlT8_mX_MS1OgBZJ8BCJUgpBB1eog4FzY7jLm1UtCrXv20osqdBmKbaqT9Xr08nFP11NU5sqftTr-UdBBb69fOD61KJOcmAyIAPNq_4yYrzxlRnr-RKRKuT0eM90ugHdV-zQ7DPMMecKxEdlYJn-rYAk9DaVVIhVnops7DxnyJT0xhIlTUNG4P4m9sAPEZU22DREDd3acuHyqLBC86sK9SVlpxkIKQJb8eat-T8Ul2ZWRAFKq2SlSaxU0zPYeR0wp59OcggmnAA8oeeHHSKb5zUUSZkJIe5WN3XX9w1zz3OsA2pkDBQdn6hSxhm4bUslCByplyKzrNKIDnG8-FWV9SNmV2OUSBmIzH9fRrrTVffDR_VJ5S_SIxC6MHCQ-pz4zGY-Q5nEzfPM8CbUeggamTA2rL2X5L9HhYJPVrNKRCNSAyFEX9F8FmjhtB64HYpHCNc23vyRokTQAralCxxUFBoznE829mMSRgIgyjjDdS-HR6lQNcFHzBI0QxaqtWz5CtTNHODn0NTeY3_7ZBHMuRwBXfC2s1sagcz3Su1kFn1HKqQXg2YaPfcr0VOIvAo0oIcidu8EOVGNbdCV687mJgoGDHgNpT1ZW0XDHaVOIVSHL_cbW2lj0WszPXww5RVE9stvfUPVC7Avig3lVH-S3U7INTYYj0GFKi0YkE3vKAIGG1jNO2W8aZAiAt0BPUboWKsC2_rjupodL_bHMdKEsJPK8_9bYq3KLQo9VLuwZ6Vu1ICK4lXoP90lKR8kX3kXPCMU26JTR2pFk294G3lfhD6kTDNl97R9GwOeoHg9GEcbB7dYp5_op8uZU71UWaoY0zDAkNVjJYCzz7K8H5bsFV2nKAnalQiahVKmcaFPpboBXc3y7LZDJEnT9bOwTzoM5w1kez3crtSd4YaFnQutRocrmrOgkFVyUH1roOFugRs2UzToVV4mDD5OIUipNk5YirpoQpOCSd4Qj5htixBJF0z3lQ4ZC5vfJSDJYQxxrcZrxlDQEsQdykv5SerogTKRKoAKWRf-Lqg9XGxe3lW3lxf_UVy4)
+
+## Best Practices
+- Keep `.puml` and `.png` files in sync.
+- Use clear, descriptive names for diagrams.
+- Document any changes to diagrams in commit messages or documentation.
+- Review diagrams after major architectural or flow changes.
+
+## Troubleshooting
+- If PNGs are not rendering, check for syntax errors in the `.puml` file.
+- If using the command line, ensure Java is installed and `plantuml.jar` is in your path.
+- For VS Code, reload the window if previews do not update.
+
+---
+
+For questions or help, see the main project documentation or open an issue on GitHub.

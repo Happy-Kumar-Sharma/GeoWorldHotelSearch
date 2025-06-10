@@ -122,6 +122,27 @@ GeoWorldHotelSearch/
 
 ---
 
+## 📊 Architecture & Flow Diagrams
+
+All project diagrams are available in the `diagrams/` folder. These diagrams provide a visual overview of the architecture, technology stack, and key flows:
+
+- **Project Architecture:**
+  - `diagrams/project_architecture.png` — High-level structure and file relationships
+- **Tools & Technology Stack:**
+  - `diagrams/tools_technology_stack.png` — All major tools, frameworks, and how they interact
+- **Hotel Search Flow:**
+  - `diagrams/hotel_search_flow.png` — Step-by-step process of searching for hotels
+- **Hotel Create Flow:**
+  - `diagrams/hotel_create_flow.png` — Step-by-step process of adding a new hotel (including Elasticsearch indexing)
+- **(Legacy) Combined Search/Add Flow:**
+  - `diagrams/hotel_search_add_flow.png` — Both flows in a single diagram (for reference)
+
+> For the PlantUML source files, see the corresponding `.puml` files in the same folder.
+
+You can open these diagrams to quickly understand how the system works, how data flows, and how to extend or debug the application.
+
+---
+
 ## 📝 Editing & Extending
 
 - **Edit UI:** Change Razor files in `Views/`

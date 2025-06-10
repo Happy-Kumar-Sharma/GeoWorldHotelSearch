@@ -1,0 +1,135 @@
+@startuml
+
+' Title
+title GeoWorldHotelSearch Tools & Technology Stack
+
+actor User as "User/Browser"
+
+' Frontend
+component "Browser (Chrome, Firefox, Edge, etc)" as Browser
+component "HTML/CSS/JS (Web Standards)" as WebTech
+component "Bootstrap (UI Framework)" as Bootstrap
+component "jQuery (JS Library)" as jQuery
+
+' Backend
+component ".NET 8 SDK & Runtime (Cross-platform)" as DotNet
+component "ASP.NET Core MVC (Web Framework)" as AspNetCore
+component "Entity Framework Core (ORM)" as EFCore
+component "C# (Programming Language)" as CSharp
+component "LINQ (Query Language)" as LINQ
+component "Elasticsearch (Full-text Search, Optional)" as Elasticsearch
+
+' Database
+component "PostgreSQL / SQL Server (Relational DB)" as Database
+
+' DevOps & Tooling
+component "PlantUML (Diagramming)" as PlantUML
+component "Docker (Containerization)" as Docker
+component "Git (Version Control)" as Git
+component "VS Code / Rider / Visual Studio (IDE)" as IDE
+component "dotnet CLI (Build/Test/Run)" as DotnetCLI
+component "EF Core CLI (Migrations)" as EFCoreCLI
+
+' Communication arrows with step numbers
+User --> Browser : Step 1: Uses
+Browser --> WebTech : Step 2: Renders HTML/CSS/JS
+WebTech --> Bootstrap : Step 3: Styling & Layout
+WebTech --> jQuery : Step 4: Interactivity
+
+Browser --> AspNetCore : Step 5: HTTP Requests (GET/POST)
+AspNetCore --> CSharp : Step 6: Executes Controllers/Services
+AspNetCore --> EFCore : Step 7: Data Access
+EFCore --> LINQ : Step 8: Queries
+EFCore --> Database : Step 9: Reads/Writes Data
+AspNetCore --> Elasticsearch : Step 10: Search (if enabled)
+
+' DevOps
+IDE --> Git : Step A: Version Control
+IDE --> DotNet : Step B: Build/Run/Test
+IDE --> PlantUML : Step C: Diagramming
+IDE --> Docker : Step D: Containerization
+IDE --> EFCoreCLI : Step E: DB Migrations
+DotNet --> DotnetCLI : Step F: CLI Tools
+EFCore --> EFCoreCLI : Step G: Migrations
+Docker --> Elasticsearch : Step H: Runs as container
+
+' Notes
+note right of Browser
+- User interacts via browser
+- Receives HTML, CSS, JS
+- Submits forms, clicks links
+end note
+
+note right of WebTech
+- HTML: Structure
+- CSS: Styling
+- JS: Interactivity
+end note
+
+note right of Bootstrap
+- Responsive UI
+- Prebuilt components
+end note
+
+note right of jQuery
+- DOM manipulation
+- AJAX requests
+end note
+
+note right of AspNetCore
+- Main web framework
+- Handles routing, controllers, views
+- Middleware pipeline
+end note
+
+note right of EFCore
+- ORM for database access
+- Handles migrations
+- Maps C# objects to DB tables
+end note
+
+note right of Database
+- Stores persistent data
+- Can be PostgreSQL or SQL Server
+- Managed via EF Core
+end note
+
+note right of Elasticsearch
+- Used for advanced search
+- Optional, runs via Docker
+- Not required for basic app
+end note
+
+note right of IDE
+- Main development environment
+- Supports debugging, editing, running
+- Extensions for C#, Docker, PlantUML
+end note
+
+note right of Git
+- Source control
+- Collaboration
+- Branching, merging
+end note
+
+note right of DotnetCLI
+- Build, run, test app
+- Manage NuGet packages
+end note
+
+note right of EFCoreCLI
+- Add/apply migrations
+- Update database schema
+end note
+
+note right of Docker
+- Runs services in containers
+- Used for Elasticsearch
+end note
+
+note right of PlantUML
+- Create architecture diagrams
+- Visual documentation
+end note
+
+@enduml
