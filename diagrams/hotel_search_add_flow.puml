@@ -1,0 +1,133 @@
+@startuml
+
+'title
+title GeoWorldHotelSearch: Hotel Search & Add Flow (Step-by-Step)
+
+actor User as "User/Browser"
+
+' Components
+component "1. Browser (Chrome, Firefox, Edge, etc)" as Browser
+component "2. HTML/CSS/JS (Razor Views)" as Views
+component "3. Controllers (HotelsController)" as Controller
+component "4. Services (HotelService)" as Service
+component "5. Repositories (HotelRepository)" as Repository
+component "6. AppDbContext (EF Core)" as AppDbContext
+component "7. Database (PostgreSQL/SQL Server)" as Database
+component "8. Elasticsearch (optional)" as Elasticsearch
+component "9. appsettings.json" as AppSettings
+component "10. wwwroot/ (CSS, JS, images)" as StaticAssets
+component "11. VS Code / Rider / Visual Studio (IDE)" as IDE
+component "12. dotnet CLI" as DotnetCLI
+component "13. EF Core CLI" as EFCoreCLI
+component "14. Docker" as Docker
+component "15. Git" as Git
+
+' Hotel Search Flow (Step-by-step)
+User --> Browser : Step 1: Enter search query
+Browser --> Views : Step 2: Render search form (Index.cshtml)
+Views --> Controller : Step 3: Submit search (HTTP GET/POST)
+Controller --> Service : Step 4: Call SearchHotelsAsync
+Service --> Repository : Step 5: Query hotels (with filters)
+Repository --> AppDbContext : Step 6: EF Core LINQ query
+AppDbContext --> Database : Step 7: SQL SELECT
+Database --> AppDbContext : Step 8: Return hotel data
+AppDbContext --> Repository : Step 9: Return entities
+Repository --> Service : Step 10: Return List<Hotel>
+Service --> Controller : Step 11: Return List<HotelViewModel>
+Controller --> Views : Step 12: Pass model
+Views --> Browser : Step 13: Render results
+
+' Optional: Elasticsearch
+Service --> Elasticsearch : Step 5a: Full-text search (if enabled)
+Elasticsearch --> Service : Step 5b: Search results
+
+' Hotel Add Flow (Step-by-step)
+User --> Browser : Step 1: Fill add hotel form
+Browser --> Views : Step 2: Render Create.cshtml
+Views --> Controller : Step 3: Submit new hotel (HTTP POST)
+Controller --> Service : Step 4: Call AddHotelAsync
+Service --> Repository : Step 5: Add hotel entity
+Repository --> AppDbContext : Step 6: EF Core Add/SaveChanges
+AppDbContext --> Database : Step 7: SQL INSERT
+Database --> AppDbContext : Step 8: Confirm insert
+AppDbContext --> Repository : Step 9: Return entity with ID
+Repository --> Service : Step 10: Return Hotel
+Service --> Controller : Step 11: Redirect to details/list
+Controller --> Views : Step 12: Show confirmation
+Views --> Browser : Step 13: Confirmation page
+
+' DevOps/Tooling
+IDE --> DotnetCLI : Step A: Build/Run/Test
+IDE --> EFCoreCLI : Step B: Migrations
+IDE --> Git : Step C: Version Control
+IDE --> Docker : Step D: Run Elasticsearch
+DotnetCLI --> AppSettings : Step E: Reads config
+EFCoreCLI --> AppDbContext : Step F: DB migrations
+Docker --> Elasticsearch : Step G: Runs as container
+
+' Static assets
+Browser --> StaticAssets : Step Z: Loads CSS/JS/images
+
+' Notes
+note right of User
+- Interacts via browser
+- Searches or adds hotels
+end note
+
+note right of Views
+- Razor pages (Index.cshtml, Create.cshtml)
+- Renders forms and results
+end note
+
+note right of Controller
+- Handles HTTP requests
+- Validates input
+- Calls service methods
+end note
+
+note right of Service
+- Business logic
+- Filtering, validation
+- Calls repository
+end note
+
+note right of Repository
+- Data access logic
+- Uses EF Core
+end note
+
+note right of AppDbContext
+- EF Core context
+- Maps C# to DB
+end note
+
+note right of Database
+- Stores hotel data
+- Handles queries/inserts
+end note
+
+note right of Elasticsearch
+- Used for advanced search
+- Optional
+end note
+
+note right of IDE
+- Code editing, debugging
+- Runs CLI tools
+end note
+
+note right of DotnetCLI
+- Builds, runs app
+- Reads config
+end note
+
+note right of EFCoreCLI
+- Manages DB migrations
+end note
+
+note right of Git
+- Source control
+- Collaboration
+end note
+
+@enduml
